@@ -1,13 +1,17 @@
 package carbonit.carbonit_project;
 
+import java.util.logging.*;
+
 /**
  * Hello world!
  *
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
-    }
+public class App {
+
+	private static final Logger logger = Logger.getLogger(App.class.getName());
+
+	public static void main(String[] args) {
+		logger.info("MyClass starting");
+		System.out.println("Hello World");
+	}
 }
