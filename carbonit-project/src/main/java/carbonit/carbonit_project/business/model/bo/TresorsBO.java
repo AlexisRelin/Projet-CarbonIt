@@ -17,4 +17,10 @@ public class TresorsBO extends ElementBO {
     public void setTresor(int tresor) {
         this.tresor = tresor;
     }
+
+    @Override
+    public String toString() {
+        return "TresorsBO{positionX=" + getPositionX() + ", positionY=" + getPositionY() +
+                ", tresor=" + getTresor() + "}";
+    }
 }

@@ -54,26 +54,8 @@ public class AventurierBO extends ElementBO {
      */
     public String getOrientationByDirection(String direction) {
 
-        if(direction.equals("A")){
-            String newOrientation = "";
-            switch(this.orientation){
-                case "N" :
-                    newOrientation = Constantes.NORD;
-                    break;
-                case "S" :
-                    newOrientation = Constantes.SUD;
-                    break;
-                case "E" :
-                    newOrientation = Constantes.EST;
-                    break;
-                case "O" :
-                    newOrientation = Constantes.OUEST;
-                    break;
-                default:
-                    newOrientation = this.orientation;
-                    break;
-            }
-            return newOrientation;
+        if(direction.equals(Constantes.AVANCE)){
+            return this.orientation;
         }
 
         // Création d'une map de la forme Map<String, Map>
@@ -117,7 +99,7 @@ public class AventurierBO extends ElementBO {
         int newPositionX = positionX;
         int newPositionY = positionY;
 
-        if(direction.equals("A")) {
+        if(direction.equals(Constantes.AVANCE)) {
 
             newPositionY = orientation.equals(Constantes.NORD) ? positionY - 1 :
                     orientation.equals(Constantes.SUD) ? positionY + 1 : newPositionY;
@@ -128,23 +110,19 @@ public class AventurierBO extends ElementBO {
 
         // Vérifie si c'est le bord du plateau
         if (ListesUtilitaires.sortieDePlateau(newPositionX, newPositionY)){
-            System.out.println("Attention bord du plateau !");
             return new int[]{positionX, positionY};
         }
 
         // Vérifie si une montagne existe au nouvel emplacement
         if (ListesUtilitaires.montagneExisteHere(newPositionX, newPositionY)){
-            System.out.println("Attention il y a une montagne !");
             return new int[]{positionX, positionY};
         }
 
         // Vérifie si un Aventurier existe au nouvel emplacement
         if (ListesUtilitaires.aventurierExisteHere(newPositionX, newPositionY, nom)){
-            System.out.println("Attention il y a déjà un Aventurier !");
             return new int[]{positionX, positionY};
         }
 
-        System.out.println("Aucune montagne en vue");
         return new int[]{newPositionX, newPositionY};
     }
 
@@ -156,20 +134,7 @@ public class AventurierBO extends ElementBO {
      * Donne le prochain déplacement
      */
     public String getNextDeplacement() {
-        String deplacement = this.patternRestant.substring(0, 1);
-
-        switch(deplacement){
-            case "A" :
-                deplacement = "A";
-                break;
-            case "D" :
-                deplacement = Constantes.DROITE;
-                break;
-            case "G" :
-                deplacement = Constantes.GAUCHE;
-                break;
-        }
-        return deplacement;
+        return this.patternRestant.substring(0, 1);
     }
 
     /**
@@ -184,6 +149,15 @@ public class AventurierBO extends ElementBO {
      */
     public void ajouterTresorSac() {
         this.sacTresor++;
+    }
+
+    public static Boolean controleImmobilite(int oldPositionX, int oldPositionY, int newPositionX, int newPositionY){
+        if(oldPositionX == newPositionX && oldPositionY == newPositionY){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     @Override

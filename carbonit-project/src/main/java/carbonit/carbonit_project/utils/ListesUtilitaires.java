@@ -99,6 +99,26 @@ public class ListesUtilitaires  {
         return aventurierExist;
     }
 
+    public static Boolean prendTresorSiExisteIci(int positionX, int positionY){
+        Boolean tresorExist = false;
+
+        for (int i = 0; i < ListesUtilitaires.getListeTresors().size() ; i++) {
+            int NbTresor = ListesUtilitaires.getListeTresors().get(i).getTresor();
+
+            tresorExist = (ListesUtilitaires.getListeTresors().get(i).getPositionX() == positionX)
+                    && (ListesUtilitaires.getListeTresors().get(i).getPositionY() == positionY)
+                    && NbTresor > 0;
+
+            // Prend 1 trésor
+            if (tresorExist){
+                NbTresor = NbTresor -1;
+                ListesUtilitaires.getListeTresors().get(i).setTresor(NbTresor);
+                break;
+            }
+        }
+        return tresorExist;
+    }
+
     /**
      * Vérifie si la position entrée en paramètre est hors du plateau
      * */
