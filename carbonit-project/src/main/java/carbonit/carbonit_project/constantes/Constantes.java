@@ -1,5 +1,6 @@
 package carbonit.carbonit_project.constantes;
 
+/** Classe de constantes */
 public class Constantes {
 
     /** Dossier contenant le fichier d'entrée de l'application */

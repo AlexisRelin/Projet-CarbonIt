@@ -8,15 +8,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/** Classe d'écriture d'une liste sur un fichier de sortie */
 public class DataOutputDAO {
 
-    /** Ecrit le contenu d'une liste dans un fichier de sortie */
+    /**
+     * Écrit le contenu d'une liste dans un fichier de sortie
+     * @param listeAEcrire Liste à retranscrire dans le fichier de sortie
+     * */
     public static void setOutputData(ArrayList<String> listeAEcrire){
 
         try {
             FileWriter writer = new FileWriter(Constantes.PATH_FICHIER_SORTIE);
             BufferedWriter bw = new BufferedWriter(writer);
 
+            // Itération sur la liste avec des retours à la ligne
             for (String element : listeAEcrire) {
                 bw.write(element);
                 bw.newLine();

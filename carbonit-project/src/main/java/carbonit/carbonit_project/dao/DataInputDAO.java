@@ -6,19 +6,21 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+/** Classe de récupération des data en provenance d'un fichier d'entrée */
 public class DataInputDAO {
 
-    /** Récupère le scanner contenant les données d'entrée*/
+    /**
+     * Renvoi le scanner contenant les données d'entrée
+     * @param args argument contenant le nom du fichier d'entrée
+     * @return Scanner des données d'entrée
+     * */
     public static Scanner getInputData(String[] args){
-
-        Scanner scanner;
-        Boolean parametresOK = controlerParametresEntree(args);
-        if (parametresOK.equals(false)) {
+        // Contrôle des paramètres d'entrée
+        if (controlerParametresEntree(args).equals(false)) {
             return null;
         }
-
-        String fileName = args[0];
-        return lireFichier(fileName);
+        // Lecture du fichier
+        return lireFichier(args[0]);
     }
 
     /**
@@ -31,20 +33,20 @@ public class DataInputDAO {
         try {
             File inputFile = new File(Constantes.PATH_FICHIER_ENTREE + fileName);
             scanner = new Scanner(inputFile);
-
         } catch (FileNotFoundException e) {
             System.out.println("Le fichier " + fileName + "n'a pas été trouvé : " + e.getMessage());
         }
-
         return scanner;
     }
 
-    /***
+    /**
      * Contrôle la présence des paramètres d'entrées obligatoires
+     * @param arguments args au run de l'application
+     * @return True si le nombre de paramètres est conforme
      */
     private static Boolean controlerParametresEntree(String[] arguments){
         if (arguments.length != 1) {
-            System.out.println("Vous devez renseigner le nom du fichier en paramètre d'entrée.");
+            System.out.println("Vous devez uniquement renseigner le nom du fichier en paramètre d'entrée.");
             return false;
         }
         return true;

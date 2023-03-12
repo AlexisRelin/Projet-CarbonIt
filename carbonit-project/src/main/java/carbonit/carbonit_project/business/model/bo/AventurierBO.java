@@ -6,25 +6,21 @@ import carbonit.carbonit_project.utils.ListesUtilitaires;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * BO de l'aventurier
+ * */
 public class AventurierBO extends ElementBO {
 
-    /**
-     * Nombre de trésors récupérés
-     */
+    /** Nombre de trésors récupérés  */
     private int sacTresor;
-    /**
-     * Orientation de l'aventurier
-     */
+    /** Orientation de l'aventurier  */
     private String orientation;
-    /**
-     * Déplacement restant de la forme "AADADAGGA"
-     */
+    /** Déplacement restant de la forme "AADADAGGA" */
     private String patternRestant;
-    /**
-     * Nom de l'aventurier
-     */
-    private String nom;
+    /** Nom de l'aventurier */
+    private final String nom;
 
+    /** Constructeur de la classe */
     public AventurierBO(String nom, int positionX, int positionY, String orientation, String patternRestant) {
         super(positionX, positionY);
         this.nom = nom;
@@ -33,27 +29,35 @@ public class AventurierBO extends ElementBO {
         this.patternRestant = patternRestant;
     }
 
+    /** Getter de sacTresor */
     public int getSacTresor() {
         return this.sacTresor;
     }
 
+    /** Getter de orientation */
     public String getOrientation() {
         return this.orientation;
     }
 
+    /** Setter de orientation */
     public void setOrientation(String orientation) {
         this.orientation = orientation;
     }
 
+    /** Getter du nom */
     public String getNom() {
         return nom;
     }
 
     /**
-     * Donne la future orientation par rapport à un déplacement
+     * Donne la future orientation de l'aventurier par rapport à une direction et à l'orientation actuelle. <br/>
+     * (Exemple : direction DROITE avec orientation NORD donne une orientation EST)
+     * @param direction La direction prise par l'aventurier
+     * @return La nouvelle orientation
      */
     public String getOrientationByDirection(String direction) {
 
+        // Avancer ne change pas l'orientation de l'aventurier
         if(direction.equals(Constantes.AVANCE)){
             return this.orientation;
         }
@@ -90,20 +94,26 @@ public class AventurierBO extends ElementBO {
     }
 
     /**
-     * Donne la position de l'aventurier après avoir avancé d'une case
-     * S'il y a une montagne la position de l'aventurier ne bouge pas
+     * Donne la nouvelle position de l'aventurier après avoir avancé d'une case<br/>
+     * Dans plusieurs cas l'aventurier ne bougera pas : <br/>
+     * - Son déplacement le ferait sortir de la carte <br/>
+     * - Une montagne est devant lui <br/>
+     * - Un autre aventurier est devant lui
+     * @param orientation L'orientation de l'aventurier
+     * @param positionX Position actuelle de l'aventurier sur l'axe X
+     * @param positionY Position actuelle de l'aventurier sur l'axe Y
+     * @param direction Direction que prend l'aventurier
+     * @param nom Nom de l'aventurier en déplacement
      * */
     public static int[] getNewCasePosition(String orientation, int positionX, int positionY,
                                            String direction, String nom){
-
         int newPositionX = positionX;
         int newPositionY = positionY;
 
+        // Calcul de son nouvel emplacement s'il avance
         if(direction.equals(Constantes.AVANCE)) {
-
             newPositionY = orientation.equals(Constantes.NORD) ? positionY - 1 :
                     orientation.equals(Constantes.SUD) ? positionY + 1 : newPositionY;
-
             newPositionX = orientation.equals(Constantes.OUEST) ? positionX - 1 :
                     orientation.equals(Constantes.EST) ? positionY + 1 : newPositionX;
         }
@@ -114,62 +124,63 @@ public class AventurierBO extends ElementBO {
         }
 
         // Vérifie si une montagne existe au nouvel emplacement
-        if (ListesUtilitaires.montagneExisteHere(newPositionX, newPositionY)){
+        if (ListesUtilitaires.montagneExisteIci(newPositionX, newPositionY)){
             return new int[]{positionX, positionY};
         }
 
         // Vérifie si un Aventurier existe au nouvel emplacement
-        if (ListesUtilitaires.aventurierExisteHere(newPositionX, newPositionY, nom)){
+        if (ListesUtilitaires.aventurierExisteIci(newPositionX, newPositionY, nom)){
             return new int[]{positionX, positionY};
         }
 
         return new int[]{newPositionX, newPositionY};
     }
 
+    /** Donne le pattern de déplacement restant pour l'aventurier */
     public String getPatternRestant() {
         return this.patternRestant;
     }
 
-    /**
-     * Donne le prochain déplacement
-     */
+    /** Donne le prochain déplacement de l'aventurier */
     public String getNextDeplacement() {
         return this.patternRestant.substring(0, 1);
     }
 
-    /**
-     * Informe que le déplacement en cours est terminé et le retire de son pattern de déplacement à réaliser
-     */
+    /** Supprime le dernier déplacement du pattern de déplacement */
     public void deplacementTermine() {
-        this.patternRestant = patternRestant.substring(1, patternRestant.length());
+        this.patternRestant = patternRestant.substring(1);
     }
 
-    /**
-     * Incrémente de 1 le nombre de trésors dans le sac de l'aventurier
-     */
+    /** Incrémente de 1 le nombre de trésors dans le sac de l'aventurier */
     public void ajouterTresorSac() {
         this.sacTresor++;
     }
 
+    /**
+     * Contrôle si sur ce tour l'aventurier ne changera pas de case
+     * @param oldPositionX Position actuelle de l'aventurier sur l'axe X
+     * @param oldPositionY Position actuelle de l'aventurier sur l'axe Y
+     * @param newPositionX Prochaine position de l'aventurier sur l'axe X
+     * @param newPositionY Prochaine position de l'aventurier sur l'axe Y
+     * @return True si l'aventurier reste sur la même case
+     * */
     public static Boolean controleImmobilite(int oldPositionX, int oldPositionY, int newPositionX, int newPositionY){
-        if(oldPositionX == newPositionX && oldPositionY == newPositionY){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return (oldPositionX == newPositionX && oldPositionY == newPositionY);
     }
 
+    /** Surcharge du setter de position X */
     @Override
     public void setPositionX(int positionX) {
         super.setPositionX(positionX);
     }
 
+    /** Surcharge du setter de position Y */
     @Override
     public void setPositionY(int positionY) {
         super.setPositionY(positionY);
     }
 
+    /** Surcharge du toString */
     @Override
     public String toString() {
         return "Aventurier " + nom + " => \n" +
