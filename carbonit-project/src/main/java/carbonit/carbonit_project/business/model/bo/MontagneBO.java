@@ -6,5 +6,9 @@ public class MontagneBO extends ElementBO {
         super(positionX, positionY);
     }
 
+    @Override
+    public String toString() {
+        return "MontagneBO{positionX=" + getPositionX() + ", positionY=" + getPositionY() + "}";
+    }
 }
 

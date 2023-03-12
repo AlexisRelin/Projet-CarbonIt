@@ -18,12 +18,12 @@ public class FichierEntreeMapper {
         int valeurX;
         int valeurY;
 
+        System.out.println("Contenu Fichier d'entrée");
+
         //génération des listes
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             System.out.println(line);
-            System.out.println();
-            System.out.println();
 
             String type = line.substring(0, 1);
             String[] parts = line.split("-");
@@ -64,6 +64,9 @@ public class FichierEntreeMapper {
                             ListesUtilitaires.getListeAventuriers(),
                             ListesUtilitaires.getListeTresors(),
                             ListesUtilitaires.getListeCartes());
+
+        System.out.println();
+        System.out.println();
 
     }
 

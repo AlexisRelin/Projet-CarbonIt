@@ -67,4 +67,55 @@ public class ListesUtilitaires  {
         }
         return patternMax;
     }
+
+    public static Boolean montagneExisteHere(int positionX, int positionY){
+        Boolean montagneExist = false;
+
+        for (int i = 0; i < ListesUtilitaires.getListeMontagnes().size() ; i++) {
+        montagneExist = (ListesUtilitaires.getListeMontagnes().get(i).getPositionX() == positionX)
+                && (ListesUtilitaires.getListeMontagnes().get(i).getPositionY() == positionY);
+            if (montagneExist){
+                break;
+            }
+        }
+        return montagneExist;
+    }
+
+    public static Boolean aventurierExisteHere(int positionX, int positionY, String nom){
+        Boolean aventurierExist = false;
+
+        for (int i = 0; i < ListesUtilitaires.getListeAventuriers().size() ; i++) {
+
+            if(nom.equals(ListesUtilitaires.getListeAventuriers().get(i).getNom())){
+                continue;
+            }
+
+            aventurierExist = (ListesUtilitaires.getListeAventuriers().get(i).getPositionX() == positionX)
+                    && (ListesUtilitaires.getListeAventuriers().get(i).getPositionY() == positionY);
+            if (aventurierExist){
+                break;
+            }
+        }
+        return aventurierExist;
+    }
+
+    /**
+     * Vérifie si la position entrée en paramètre est hors du plateau
+     * */
+    public static Boolean sortieDePlateau(int positionX, int positionY){
+        CarteBO plateau = ListesUtilitaires.getListeCartes().get(0);
+        return positionX == plateau.getLargeurX() || positionY == plateau.getHauteurY()
+                || positionX < 0 || positionY < 0;
+    }
+
+    @Override
+    public String toString() {
+        return "ListesUtilitaires{" +
+                "listeMontagnes=" + listeMontagnes +
+                ", listeAventuriers=" + listeAventuriers +
+                ", listeTresors=" + listeTresors +
+                ", listeCartes=" + listeCartes +
+                '}';
+    }
+
 }

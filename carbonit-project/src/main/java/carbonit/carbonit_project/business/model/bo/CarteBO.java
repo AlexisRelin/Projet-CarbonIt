@@ -25,4 +25,6 @@ public class CarteBO {
     public void setHauteurY(int hauteurY) {
         this.hauteurY = hauteurY;
     }
+
+
 }
