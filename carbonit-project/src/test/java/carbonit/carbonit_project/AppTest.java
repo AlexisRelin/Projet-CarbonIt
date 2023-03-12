@@ -14,17 +14,17 @@ public class AppTest {
 
   @Test
   public void testGetOrientationByDirection(){
-    AventurierBO aventurier1 = new AventurierBO(1, 1, "NORD", "ADDAAG");
+    AventurierBO aventurier1 = new AventurierBO("Paul", 1, 1, "NORD", "ADDAAG");
     String direction = "DROITE";
     String orientation = aventurier1.getOrientationByDirection(direction);
     assertEquals(orientation, "EST");
 
-    AventurierBO aventurier2 = new AventurierBO(1, 1, "OUEST", "ADDAAG");
+    AventurierBO aventurier2 = new AventurierBO("Paul", 1, 1, "OUEST", "ADDAAG");
     direction = "DROITE";
     orientation = aventurier2.getOrientationByDirection(direction);
     assertEquals(orientation, "SUD");
 
-    AventurierBO aventurier3 = new AventurierBO(1, 1, "SUD", "ADDAAG");
+    AventurierBO aventurier3 = new AventurierBO("Paul", 1, 1, "SUD", "ADDAAG");
     direction = "GAUCHE";
     orientation = aventurier3.getOrientationByDirection(direction);
     assertEquals(orientation, "EST");

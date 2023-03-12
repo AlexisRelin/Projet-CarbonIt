@@ -22,9 +22,10 @@ public class ListesUtilitaires  {
         this.listeCartes = listeCartes;
     }
 
-    public static ListesUtilitaires  getInstance() {
+    public static ListesUtilitaires getInstance(ArrayList<MontagneBO> listeMontagnes, ArrayList<AventurierBO> listeAventuriers,
+                                                ArrayList<TresorsBO> listeTresors, ArrayList<CarteBO> listeCartes) {
         if (instance == null) {
-            throw new IllegalStateException("L'instance de ListesUtilitaires n'a pas été initialisée.");
+            instance = new ListesUtilitaires(listeMontagnes, listeAventuriers, listeTresors, listeCartes);
         }
         return instance;
     }
@@ -51,5 +52,19 @@ public class ListesUtilitaires  {
         listeAventuriers = maListeAventuriers;
         listeTresors = maListeTresors;
         listeCartes = maListeCartes;
+    }
+
+    /**
+     * Récupère le nombre de tours maximum pour effectuer tous les déplacements des aventuriers
+     * @param listeAventuriers Liste des aventuriers
+     * @return nombre de tours restant
+     * */
+    public static int getNombrePatternListeAventurierMax(ArrayList<AventurierBO> listeAventuriers) {
+        int patternMax = 0;
+        for (int i = 0; i < listeAventuriers.size(); i++) {
+            int actualPattern = listeAventuriers.get(i).getPatternRestant().length();
+            patternMax = actualPattern > patternMax ? actualPattern : patternMax;
+        }
+        return patternMax;
     }
 }

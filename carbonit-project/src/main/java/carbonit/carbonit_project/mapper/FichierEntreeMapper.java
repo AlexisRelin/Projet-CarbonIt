@@ -56,8 +56,14 @@ public class FichierEntreeMapper {
 
         scanner.close();
 
-        ListesUtilitaires.initListes(ListesUtilitaires.getListeMontagnes(), ListesUtilitaires.getListeAventuriers(),
-                ListesUtilitaires.getListeTresors(), ListesUtilitaires.getListeCartes());
+        ListesUtilitaires.getInstance(listeMontagnes,
+                            listeAventuriers,
+                            listeTresors,
+                            listeCartes)
+                        .initListes(ListesUtilitaires.getListeMontagnes(),
+                            ListesUtilitaires.getListeAventuriers(),
+                            ListesUtilitaires.getListeTresors(),
+                            ListesUtilitaires.getListeCartes());
 
     }
 

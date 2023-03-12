@@ -19,35 +19,23 @@ import carbonit.carbonit_project.utils.ListesUtilitaires;
  */
 public class App {
 
-	private static final Logger logger = Logger.getLogger(App.class.getName());
+    public static void main(String[] args) {
+        System.out.println("Début de la methode Main");
 
-	public static void main(String[] args) {
-		logger.info("MyClass starting");
-		System.out.println("Début de le classe Main");
+        // Récupère les données du fichier d'entrée
+        Scanner scanner = DataInputDAO.getInputData(args);
 
-		// Récupère les données du fichier d'entrée
-		Scanner scanner = DataInputDAO.getInputData(args);
+        // Mappe les données d'entrée en listes
+        FichierEntreeMapper.mapFileToListes(scanner);
 
-		// Mappe les données d'entrée en listes
-		FichierEntreeMapper.mapFileToListes(scanner);
+        // Création du plateau
+        Object[][] plateau = CarteMapper.fromListToCarte();
 
-		// Création du plateau
-		Object[][] plateau = CarteMapper.fromListToCarte();
+        // Calcul nombre de tour
+        int nombreTour = ListesUtilitaires.getNombrePatternListeAventurierMax(ListesUtilitaires.getListeAventuriers());
+		System.out.println(nombreTour);
+    }
 
-		// Calcul nombre de tour
 
-
-	}
-
-	private int calclulNombreTour(){
-		ListesUtilitaires instance = ListesUtilitaires.getInstance();
-		ArrayList<AventurierBO> listeAventuriers = instance.getListeAventuriers();
-
-		for (int i = 0; i < listeAventuriers.size(); i++) {
-			listeAventuriers.get(i);
-		}
-
-		return 0;
-	}
 
 }

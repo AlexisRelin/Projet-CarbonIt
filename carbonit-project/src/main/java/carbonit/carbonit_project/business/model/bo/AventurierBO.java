@@ -109,4 +109,5 @@ public class AventurierBO extends ElementBO {
         this.sacTresor++;
     }
 
+
 }

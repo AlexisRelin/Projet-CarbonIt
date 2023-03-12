@@ -14,14 +14,13 @@ public class CarteMapper {
 
     public static Object[][] fromListToCarte() {
 
-        ListesUtilitaires instance = ListesUtilitaires.getInstance();
-        ArrayList<MontagneBO> listeMontagnes = instance.getListeMontagnes();
-        ArrayList<AventurierBO> listeAventuriers = instance.getListeAventuriers();
-        ArrayList<TresorsBO> listeTresors = instance.getListeTresors();
-        ArrayList<CarteBO> listeCartes = instance.getListeCartes();
+        ArrayList<MontagneBO> listeMontagnes = ListesUtilitaires.getListeMontagnes();
+        ArrayList<AventurierBO> listeAventuriers = ListesUtilitaires.getListeAventuriers();
+        ArrayList<TresorsBO> listeTresors = ListesUtilitaires.getListeTresors();
+        ArrayList<CarteBO> listeCartes = ListesUtilitaires.getListeCartes();
 
         CarteBO carte = listeCartes.get(0);
-        plateau = new String[carte.getLargeurX()][carte.getHauteurY()];
+        plateau = new Object[carte.getLargeurX()][carte.getHauteurY()];
 
         ajouterPlaine(carte.getLargeurX(), carte.getHauteurY());
         ajouterMontagne(listeMontagnes);
