@@ -14,7 +14,7 @@ public class FichierEntreeMapper {
      * Map les données du scanner en listes métier
      * @param scanner scanner contenant les données d'entrée
      * */
-    public static void mapFileToListes(Scanner scanner) {
+    public static ListesUtilitaires mapFileToListes(Scanner scanner) {
 
         ArrayList<MontagneBO> listeMontagnes = new ArrayList<>();
         ArrayList<AventurierBO> listeAventuriers = new ArrayList<>();
@@ -62,6 +62,9 @@ public class FichierEntreeMapper {
         // Initialisation des listes
         ListesUtilitaires.initListes(listeMontagnes, listeAventuriers, listeTresors, listeCartes);
         // Création de l'instance du singleton
-        ListesUtilitaires.getInstance(listeMontagnes, listeAventuriers, listeTresors, listeCartes);
+        ListesUtilitaires listes = ListesUtilitaires.getInstance(listeMontagnes,
+                listeAventuriers, listeTresors, listeCartes);
+
+        return listes;
     }
 }

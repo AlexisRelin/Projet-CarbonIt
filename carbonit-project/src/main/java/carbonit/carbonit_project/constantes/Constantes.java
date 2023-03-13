@@ -4,9 +4,9 @@ package carbonit.carbonit_project.constantes;
 public class Constantes {
 
     /** Dossier contenant le fichier d'entrée de l'application */
-    public static final String PATH_FICHIER_ENTREE = "src\\main\\ressources\\Entree\\";
+    public static final String PATH_FICHIER_ENTREE = "src\\ressources\\Entree\\";
     /** Dossier contenant le fichier de sortie de l'application */
-    public static final String PATH_FICHIER_SORTIE = "src\\main\\ressources\\Entree\\MatriceSortie.txt";
+    public static final String PATH_FICHIER_SORTIE = "src\\ressources\\Sortie\\MatriceSortie.txt";
 
     /** Orientation nord */
     public static final String NORD = "N";

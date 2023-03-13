@@ -105,31 +105,35 @@ public class AventurierBO extends ElementBO {
      * @param direction Direction que prend l'aventurier
      * @param nom Nom de l'aventurier en déplacement
      * */
-    public static int[] getNewCasePosition(String orientation, int positionX, int positionY,
+    public int[] getNewCasePosition(String orientation, int positionX, int positionY,
                                            String direction, String nom){
+
+        ListesUtilitaires listesUtilitaires = ListesUtilitaires.getInstance();
+
         int newPositionX = positionX;
         int newPositionY = positionY;
 
         // Calcul de son nouvel emplacement s'il avance
         if(direction.equals(Constantes.AVANCE)) {
+
             newPositionY = orientation.equals(Constantes.NORD) ? positionY - 1 :
                     orientation.equals(Constantes.SUD) ? positionY + 1 : newPositionY;
             newPositionX = orientation.equals(Constantes.OUEST) ? positionX - 1 :
-                    orientation.equals(Constantes.EST) ? positionY + 1 : newPositionX;
+                    orientation.equals(Constantes.EST) ? positionX + 1 : newPositionX;
         }
 
         // Vérifie si c'est le bord du plateau
-        if (ListesUtilitaires.sortieDePlateau(newPositionX, newPositionY)){
+        if (listesUtilitaires.sortieDePlateau(newPositionX, newPositionY)){
             return new int[]{positionX, positionY};
         }
 
         // Vérifie si une montagne existe au nouvel emplacement
-        if (ListesUtilitaires.montagneExisteIci(newPositionX, newPositionY)){
+        if (listesUtilitaires.montagneExisteIci(newPositionX, newPositionY)){
             return new int[]{positionX, positionY};
         }
 
         // Vérifie si un Aventurier existe au nouvel emplacement
-        if (ListesUtilitaires.aventurierExisteIci(newPositionX, newPositionY, nom)){
+        if (listesUtilitaires.aventurierExisteIci(newPositionX, newPositionY, nom)){
             return new int[]{positionX, positionY};
         }
 
@@ -164,7 +168,7 @@ public class AventurierBO extends ElementBO {
      * @param newPositionY Prochaine position de l'aventurier sur l'axe Y
      * @return True si l'aventurier reste sur la même case
      * */
-    public static Boolean controleImmobilite(int oldPositionX, int oldPositionY, int newPositionX, int newPositionY){
+    public Boolean controleImmobilite(int oldPositionX, int oldPositionY, int newPositionX, int newPositionY){
         return (oldPositionX == newPositionX && oldPositionY == newPositionY);
     }
 

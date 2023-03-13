@@ -18,11 +18,12 @@ public class FichierSortieMapper {
      * */
     public static ArrayList<String> mapListesMetierToListeData() {
 
+        ListesUtilitaires listesUtilitaires = ListesUtilitaires.getInstance();
         ArrayList<String> listeAEcrire = new ArrayList<String>();
         StringBuilder sb = new StringBuilder();
 
         // Mise au format d'une ligne Carte
-        CarteBO carte = ListesUtilitaires.getListeCartes().get(0);
+        CarteBO carte = listesUtilitaires.getListeCartes().get(0);
         sb.append(Constantes.SIGLE_CARTE);
         sb.append(Constantes.SEPARATEUR_FICHIERS);
         sb.append(String.valueOf(carte.getLargeurX()));
@@ -33,7 +34,7 @@ public class FichierSortieMapper {
         sb.setLength(0);
 
         // Mise au format d'une ligne Montagne
-        for (MontagneBO montagne : ListesUtilitaires.getListeMontagnes()){
+        for (MontagneBO montagne : listesUtilitaires.getListeMontagnes()){
             sb.append(Constantes.SIGLE_MONTAGNE);
             sb.append(Constantes.SEPARATEUR_FICHIERS);
             sb.append(montagne.getPositionX());
@@ -45,7 +46,7 @@ public class FichierSortieMapper {
         }
 
         // Mise au format d'une ligne Tresors
-        for (TresorsBO tresors : ListesUtilitaires.getListeTresors()){
+        for (TresorsBO tresors : listesUtilitaires.getListeTresors()){
             sb.append(Constantes.SIGLE_TRESOR);
             sb.append(Constantes.SEPARATEUR_FICHIERS);
             sb.append(tresors.getPositionX());
@@ -59,7 +60,7 @@ public class FichierSortieMapper {
         }
 
         // Mise au format d'une ligne Aventuriers
-        for (AventurierBO aventurier : ListesUtilitaires.getListeAventuriers()){
+        for (AventurierBO aventurier : listesUtilitaires.getListeAventuriers()){
             sb.append(Constantes.SIGLE_AVENTURIER);
             sb.append(Constantes.SEPARATEUR_FICHIERS);
             sb.append(aventurier.getNom());
@@ -75,7 +76,6 @@ public class FichierSortieMapper {
             listeAEcrire.add(sb.toString());
             sb.setLength(0);
         }
-
         return listeAEcrire;
     }
 }

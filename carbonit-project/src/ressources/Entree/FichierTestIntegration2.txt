@@ -1,0 +1,15 @@
+ENTREE
+C - 6 - 7
+M - 0 - 2
+M - 1 - 2
+# test de commentaire
+M - 3 - 2
+M - 2 - 4
+M - 4 - 5
+T - 2 - 2 - 3
+T - 0 - 3 - 2
+# test de commentaire
+T - 3 - 6 - 3
+A - Lara - 0 - 0 - S - AGAADAADAAGA
+A - Paul - 4 - 3 - S - AGAADAADAADA
+A - Jean - 1 - 5 - N - AGADAGGAAGAD

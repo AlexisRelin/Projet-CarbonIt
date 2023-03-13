@@ -35,4 +35,12 @@ public class CarteBO {
     public void setHauteurY(int hauteurY) {
         this.hauteurY = hauteurY;
     }
+
+    @Override
+    public String toString() {
+        return "CarteBO{" +
+                "largeurX=" + largeurX +
+                ", hauteurY=" + hauteurY +
+                '}';
+    }
 }

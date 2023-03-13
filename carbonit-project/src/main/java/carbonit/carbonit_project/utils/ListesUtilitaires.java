@@ -30,7 +30,7 @@ public class ListesUtilitaires  {
         this.listeCartes = listeCartes;
     }
 
-    /** Récupération de l'instance du singleton */
+    /** Récupération de l'instance du singleton en créant une instance */
     public static ListesUtilitaires getInstance(ArrayList<MontagneBO> listeMontagnes, ArrayList<AventurierBO> listeAventuriers,
                                                 ArrayList<TresorsBO> listeTresors, ArrayList<CarteBO> listeCartes) {
         if (instance == null) {
@@ -39,23 +39,31 @@ public class ListesUtilitaires  {
         return instance;
     }
 
+    /** Récupération de l'instance du singleton si elle existe déjà */
+    public static ListesUtilitaires getInstance() {
+        if (instance == null) {
+            throw new IllegalStateException("ListesUtilitaires non initialisé. Appelez d'abord getInstance avec paramètres.");
+        }
+        return instance;
+    }
+
     /** Getter de listeMontagnes */
-    public static ArrayList<MontagneBO> getListeMontagnes() {
+    public ArrayList<MontagneBO> getListeMontagnes() {
         return listeMontagnes;
     }
 
     /** Getter de listeAventuriers */
-    public static ArrayList<AventurierBO> getListeAventuriers() {
+    public ArrayList<AventurierBO> getListeAventuriers() {
         return listeAventuriers;
     }
 
     /** Getter de listeTresors */
-    public static ArrayList<TresorsBO> getListeTresors() {
+    public ArrayList<TresorsBO> getListeTresors() {
         return listeTresors;
     }
 
     /** Getter de listeCartes */
-    public static ArrayList<CarteBO> getListeCartes() {
+    public ArrayList<CarteBO> getListeCartes() {
         return listeCartes;
     }
 
@@ -79,7 +87,7 @@ public class ListesUtilitaires  {
      * @param listeAventuriers Liste des aventuriers
      * @return nombre de tours maximum pour completer le pattern de déplacement
      * */
-    public static int getNombrePatternListeAventurierMax(ArrayList<AventurierBO> listeAventuriers) {
+    public int getNombrePatternListeAventurierMax(ArrayList<AventurierBO> listeAventuriers) {
         int patternMax = 0;
         for (int i = 0; i < listeAventuriers.size(); i++) {
             int actualPattern = listeAventuriers.get(i).getPatternRestant().length();
@@ -94,12 +102,12 @@ public class ListesUtilitaires  {
      * @param positionY position Y où contrôler la présence de montagne
      * @return True si une montagne existe sur cette position
      * */
-    public static Boolean montagneExisteIci(int positionX, int positionY){
+    public Boolean montagneExisteIci(int positionX, int positionY){
         Boolean montagneExist = false;
 
-        for (int i = 0; i < ListesUtilitaires.getListeMontagnes().size() ; i++) {
-        montagneExist = (ListesUtilitaires.getListeMontagnes().get(i).getPositionX() == positionX)
-                && (ListesUtilitaires.getListeMontagnes().get(i).getPositionY() == positionY);
+        for (int i = 0; i < this.getListeMontagnes().size() ; i++) {
+        montagneExist = (this.getListeMontagnes().get(i).getPositionX() == positionX)
+                && (this.getListeMontagnes().get(i).getPositionY() == positionY);
             if (montagneExist){
                 break;
             }
@@ -114,18 +122,18 @@ public class ListesUtilitaires  {
      * @param nom de l'aventurier qui contrôle la présence d'un autre aventurier
      * @return True si une montagne existe sur cette position
      * */
-    public static Boolean aventurierExisteIci(int positionX, int positionY, String nom){
+    public Boolean aventurierExisteIci(int positionX, int positionY, String nom){
         Boolean aventurierExist = false;
 
-        for (int i = 0; i < ListesUtilitaires.getListeAventuriers().size() ; i++) {
+        for (int i = 0; i < this.getListeAventuriers().size() ; i++) {
 
             // L'aventurier ne compare pas sa position avec lui-même
-            if(nom.equals(ListesUtilitaires.getListeAventuriers().get(i).getNom())){
+            if(nom.equals(this.getListeAventuriers().get(i).getNom())){
                 continue;
             }
             // Comparaison des positions
-            aventurierExist = (ListesUtilitaires.getListeAventuriers().get(i).getPositionX() == positionX)
-                    && (ListesUtilitaires.getListeAventuriers().get(i).getPositionY() == positionY);
+            aventurierExist = (this.getListeAventuriers().get(i).getPositionX() == positionX)
+                    && (this.getListeAventuriers().get(i).getPositionY() == positionY);
             if (aventurierExist){
                 break;
             }
@@ -139,20 +147,20 @@ public class ListesUtilitaires  {
      * @param positionY Position sur Y où contrôler la présence du trésor
      * @return True si le trésor a été repéré et qu'il n'est pas vide
      * */
-    public static Boolean prendTresorSiExisteIci(int positionX, int positionY){
+    public Boolean prendTresorSiExisteIci(int positionX, int positionY){
         Boolean tresorExist = false;
 
-        for (int i = 0; i < ListesUtilitaires.getListeTresors().size() ; i++) {
-            int NbTresor = ListesUtilitaires.getListeTresors().get(i).getTresor();
+        for (int i = 0; i < this.getListeTresors().size() ; i++) {
+            int NbTresor = this.getListeTresors().get(i).getTresor();
 
-            tresorExist = (ListesUtilitaires.getListeTresors().get(i).getPositionX() == positionX)
-                    && (ListesUtilitaires.getListeTresors().get(i).getPositionY() == positionY)
+            tresorExist = (this.getListeTresors().get(i).getPositionX() == positionX)
+                    && (this.getListeTresors().get(i).getPositionY() == positionY)
                     && NbTresor > 0;
 
             // vide le trésor d'une unité
             if (tresorExist){
                 NbTresor = NbTresor -1;
-                ListesUtilitaires.getListeTresors().get(i).setTresor(NbTresor);
+                this.getListeTresors().get(i).setTresor(NbTresor);
                 break;
             }
         }
@@ -165,8 +173,8 @@ public class ListesUtilitaires  {
      * @param positionY Position sur l'axe des Y à contrôler
      * @return True si la position est en dehors du plateau
      * */
-    public static Boolean sortieDePlateau(int positionX, int positionY){
-        CarteBO plateau = ListesUtilitaires.getListeCartes().get(0);
+    public Boolean sortieDePlateau(int positionX, int positionY){
+        CarteBO plateau = this.getListeCartes().get(0);
         return positionX == plateau.getLargeurX() || positionY == plateau.getHauteurY()
                 || positionX < 0 || positionY < 0;
     }

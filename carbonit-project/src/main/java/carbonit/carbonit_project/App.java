@@ -25,16 +25,18 @@ public class App {
             FichierEntreeMapper.mapFileToListes(scanner);
         }
 
+        ListesUtilitaires listesUtilitaires = ListesUtilitaires.getInstance();
+
         // Calcul nombre de tour de plateau
-        int nombreTour = ListesUtilitaires.getNombrePatternListeAventurierMax(ListesUtilitaires.getListeAventuriers());
+        int nombreTour = listesUtilitaires.getNombrePatternListeAventurierMax(listesUtilitaires.getListeAventuriers());
 
         // Pour chaque tour de plateau
         for(int i = 0; i < nombreTour; i++) {
 
             // Déplacer Aventurier 1 par 1 en commençant par le premier (prioritaire)
-            for (int j =0 ; j < ListesUtilitaires.getListeAventuriers().size() ; j++){
+            for (int j =0 ; j < listesUtilitaires.getListeAventuriers().size() ; j++){
 
-                AventurierBO aventurier = ListesUtilitaires.getListeAventuriers().get(j);
+                AventurierBO aventurier = listesUtilitaires.getListeAventuriers().get(j);
                 String prochaineDirection = aventurier.getNextDeplacement();
                 String newOrientation = aventurier.getOrientationByDirection(prochaineDirection);
 
@@ -42,17 +44,17 @@ public class App {
                 int oldPositionY = aventurier.getPositionY();
 
                 // Calcul des nouvelles positions
-                int[] nouvellePosition = AventurierBO.getNewCasePosition(newOrientation,
+                int[] nouvellePosition = aventurier.getNewCasePosition(newOrientation,
                         oldPositionX, oldPositionY, prochaineDirection, aventurier.getNom());
                 int newPositionX = nouvellePosition[0];
                 int newPositionY = nouvellePosition[1];
 
                 // Vérifie si l'Aventurier est immobile sur ce tour pour ne pas qu'il ne prenne de nouveau un trésor
                 Boolean aventurierImmobile =
-                        AventurierBO.controleImmobilite(oldPositionX, oldPositionY, newPositionX, newPositionY);
+                        aventurier.controleImmobilite(oldPositionX, oldPositionY, newPositionX, newPositionY);
 
                 // Récupère le trésor pendant le déplacement s'il existe
-                if(!aventurierImmobile && ListesUtilitaires.prendTresorSiExisteIci(newPositionX, newPositionY)){
+                if(!aventurierImmobile && listesUtilitaires.prendTresorSiExisteIci(newPositionX, newPositionY)){
                     aventurier.ajouterTresorSac();
                 }
 
@@ -61,7 +63,7 @@ public class App {
                 aventurier.setPositionX(newPositionX);
                 aventurier.setPositionY(newPositionY);
                 aventurier.deplacementTermine();
-                ListesUtilitaires.getListeAventuriers().set(j, aventurier);
+                listesUtilitaires.getListeAventuriers().set(j, aventurier);
             }
         }
 
