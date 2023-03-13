@@ -19,16 +19,16 @@ public class FichierSortieMapper {
     public static ArrayList<String> mapListesMetierToListeData() {
 
         ListesUtilitaires listesUtilitaires = ListesUtilitaires.getInstance();
-        ArrayList<String> listeAEcrire = new ArrayList<String>();
+        ArrayList<String> listeAEcrire = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
 
         // Mise au format d'une ligne Carte
         CarteBO carte = listesUtilitaires.getListeCartes().get(0);
         sb.append(Constantes.SIGLE_CARTE);
         sb.append(Constantes.SEPARATEUR_FICHIERS);
-        sb.append(String.valueOf(carte.getLargeurX()));
+        sb.append(carte.getLargeurX());
         sb.append(Constantes.SEPARATEUR_FICHIERS);
-        sb.append(String.valueOf(carte.getHauteurY()));
+        sb.append(carte.getHauteurY());
 
         listeAEcrire.add(sb.toString());
         sb.setLength(0);

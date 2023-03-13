@@ -7,6 +7,8 @@ public class Constantes {
     public static final String PATH_FICHIER_ENTREE = "src\\ressources\\Entree\\";
     /** Dossier contenant le fichier de sortie de l'application */
     public static final String PATH_FICHIER_SORTIE = "src\\ressources\\Sortie\\MatriceSortie.txt";
+    /** Dossier contenant le fichier de sortie de l'application */
+    public static final String PATH_DOSSIER_SORTIE = "src\\ressources\\Sortie\\";
 
     /** Orientation nord */
     public static final String NORD = "N";

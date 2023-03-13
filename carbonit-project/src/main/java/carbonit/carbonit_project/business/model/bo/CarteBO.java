@@ -21,19 +21,9 @@ public class CarteBO {
         return largeurX;
     }
 
-    /** Setter de largeurX */
-    public void setLargeurX(int largeurX) {
-        this.largeurX = largeurX;
-    }
-
     /** Getter de la hauteur */
     public int getHauteurY() {
         return hauteurY;
-    }
-
-    /** Setter de la hauteur */
-    public void setHauteurY(int hauteurY) {
-        this.hauteurY = hauteurY;
     }
 
     @Override

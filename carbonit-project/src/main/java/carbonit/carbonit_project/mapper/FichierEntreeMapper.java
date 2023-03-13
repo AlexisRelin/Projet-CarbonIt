@@ -61,10 +61,9 @@ public class FichierEntreeMapper {
 
         // Initialisation des listes
         ListesUtilitaires.initListes(listeMontagnes, listeAventuriers, listeTresors, listeCartes);
-        // Création de l'instance du singleton
-        ListesUtilitaires listes = ListesUtilitaires.getInstance(listeMontagnes,
-                listeAventuriers, listeTresors, listeCartes);
 
-        return listes;
+        // Création de l'instance du singleton
+        return ListesUtilitaires.getInstance(listeMontagnes,
+                listeAventuriers, listeTresors, listeCartes);
     }
 }

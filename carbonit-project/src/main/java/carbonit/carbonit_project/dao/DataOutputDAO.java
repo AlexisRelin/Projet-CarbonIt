@@ -6,7 +6,6 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /** Classe d'écriture d'une liste sur un fichier de sortie */
 public class DataOutputDAO {
