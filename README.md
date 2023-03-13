@@ -8,7 +8,7 @@ Lancement de l'application :
 - Lancer la classe main se trouvant dans la classe App avec pour parametre d'entrée le nom du fichier avec son extention (exemple : MatriceEntree.txt)
 
 Sortie :
-- le fichier MatriceSortie.txt est généré et contient les informations de sortie de l'application
+- le fichier MatriceSortie.txt est généré et contient les informations de sortie de l'application sous src/resources/Sortie
 
 ____________________________________________________________________________________
 Structure du code
