@@ -35,6 +35,6 @@ ________________________________________________________________________________
 Logique de développement :
 
 L'application a été pensée comment un module évolutif qui suit la trame suivante
-Fichier entrée > DAO > mapper > application > mapper > DAO > Fichier de sortie
+- Fichier entrée > DAO > mapper > application > mapper > DAO > Fichier de sortie
 
 Chacune de ses briques peuvent être modifiées indépendamment des autres avec pour seule contrainte le respect de leurs types de données d'entrées et de sorties. 
