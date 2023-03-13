@@ -5,7 +5,7 @@ Enoncé du projet :
 
 Lancement de l'application :
 - Ajouter votre fichier d'entrée dans le dossier src/resources/Entree de l'application
-- Lancer la classe main se trouvant dans la classe App avec pour parametre d'entrée le nom du fichier avec son extention (exemple : MatriceEntree.txt)
+- Lancer la methode main se trouvant dans la classe App avec pour parametre d'entrée le nom du fichier avec son extention (exemple : MatriceEntree.txt)
 
 Sortie :
 - le fichier MatriceSortie.txt est généré et contient les informations de sortie de l'application sous src/resources/Sortie
