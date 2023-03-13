@@ -16,7 +16,7 @@ Structure du code
 Business : 
 - Couche contenant les objets métier (carte, aventurier, montagne, trésor) 
 
-Constante : 
+Constantes : 
 - Regroupement des constantes du projet
 
 DAO :
@@ -25,7 +25,7 @@ DAO :
 
 Mapper :
 - FichierEntreeMapper => Mappe les données récupérées en entrées en des listes d'objets métier
-- FichierSortieMapper => Mappe les lsites de données métier de sortie en donnée de sortie
+- FichierSortieMapper => Mappe les listes de données métier de sortie en données de sortie
 
 ListesUtilitaires : 
 - Listes et traitement sur ces listes utilisés dans la couche métier de l'application
