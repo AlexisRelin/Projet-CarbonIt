@@ -14,20 +14,21 @@ ________________________________________________________________________________
 Structure du code
 
 Business : 
-Couche contenant les objets métier (carte, aventurier, montagne, trésor) 
+- Couche contenant les objets métier (carte, aventurier, montagne, trésor) 
 
 Constante : 
-Regroupement des constantes du projet
+- Regroupement des constantes du projet
 
 DAO :
-DataInputDAO => Récupère les données du fichier d'entrée
-DataOutputDAO => Ecrit les données de sortie dans un fichier
+- DataInputDAO => Récupère les données du fichier d'entrée
+- DataOutputDAO => Ecrit les données de sortie dans un fichier
 
 Mapper :
-FichierEntreeMapper => Mappe les données récupérées en entrées en des listes d'objets métier
-FichierSortieMapper => Mappe les lsites de données métier de sortie en donnée de sortie
+- FichierEntreeMapper => Mappe les données récupérées en entrées en des listes d'objets métier
+- FichierSortieMapper => Mappe les lsites de données métier de sortie en donnée de sortie
 
-ListesUtilitaires : Listes et traitement sur ces listes utilisés dans la couche métier de l'application
+ListesUtilitaires : 
+- Listes et traitement sur ces listes utilisés dans la couche métier de l'application
 
 App : Classe main de l'application
 ____________________________________________________________________________________
