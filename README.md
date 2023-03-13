@@ -28,7 +28,7 @@ Mapper :
 - FichierSortieMapper => Mappe les listes de données métier de sortie en données de sortie
 
 ListesUtilitaires : 
-- Listes et traitement sur ces listes utilisés dans la couche métier de l'application
+- Listes et traitement sur ces listes utilisées dans la couche métier de l'application
 
 App : Classe main de l'application
 ____________________________________________________________________________________
